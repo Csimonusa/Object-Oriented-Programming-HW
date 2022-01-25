@@ -1,0 +1,24 @@
+{
+  "name": "object-oriented-programming-hw",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Csimonusa/Object-Oriented-Programming-HW.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Csimonusa/Object-Oriented-Programming-HW/issues"
+  },
+  "homepage": "https://github.com/Csimonusa/Object-Oriented-Programming-HW#readme"
+}
