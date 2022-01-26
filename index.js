@@ -38,6 +38,7 @@ menu = () => {
             .then(({name, employeeId, email, address, officeNumber}) => {
                 const manager = new Manager(name, employeeId, email, address, officeNumber)
                 console.log(manager)
+                makeTeam()
             })
     }
 
@@ -68,6 +69,7 @@ menu = () => {
             .then(({name, employeeId, email, school}) => {
                 const intern = new Intern(name, employeeId, email, school)
                 console.log(intern)
+                makeTeam()
             })
     }
 
@@ -98,10 +100,38 @@ menu = () => {
             .then(({name, employeeId, email, github}) => {
                 const engineer = new Engineer(name, employeeId, email, github)
                 console.log(engineer)
+                makeTeam()
             })
     }
 
+    makeTeam = () => {
+        inquirer
+            .prompt([
+                {
+                    type:'list',
+                    message:'What type of employee would you like to add to your team?',
+                    choices: [
+                        'Intern',
+                        'Engineer',
+                        'My team is complete now!'
+                    ],
+                    name:'employeeAdded'
+                }
+            ])
+            .then((choice) => {
+                switch (choice.employeeAdded) {
+                    case 'Intern':
+                        createIntern()
+                        break
+                    case 'Engineer':
+                        createEngineer()
+                        break
+                }
+            })
+    }
+    createManager()
 }
 
+menu()
 
 
