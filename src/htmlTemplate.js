@@ -19,7 +19,20 @@ const managerCard = manager => {
 
 const internCard = intern => {
     return `
-    `
+    <div class="card p-1" style="width: 18rem;">
+        <img src="./images/avatar-1577909_960_720.png" class="card-img-top" alt="Photo of Employee">
+        <div class="card-body">
+            <h5 class="card-title text-center">Intern <i class="fas fa-graduation-cap"></i></h5>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Name: ${intern.name}</li>
+            <li class="list-group-item">Employee Id: ${intern.employeeId}</li>
+            <li class="list-group-item">school: ${intern.school}</li>
+        </ul>
+        <div class="card-body">
+            <a href="${intern.email}" class="card-link">Email</a>
+        </div>
+    </div>`
 }
 
 const engineerCard = engineer => {
