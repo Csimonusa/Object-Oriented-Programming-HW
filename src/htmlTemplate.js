@@ -1,4 +1,5 @@
-const managerCard = manager => {
+const generateTeam = (team) => {
+  const managerCard = (manager) => {
     return `
     <div class="card p-1" style="width: 18rem;">
         <img src="./images/avatar-1577909_960_720.png" class="card-img-top" alt="Photo of Employee">
@@ -6,18 +7,18 @@ const managerCard = manager => {
             <h5 class="card-title text-center">Manager <i class="fas fa-user-tie"></i></h5>
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">Name: ${manager.name}</li>
-            <li class="list-group-item">Employee Id: ${manager.employeeId}</li>
-            <li class="list-group-item">Address: ${manager.address}</li>
-            <li class="list-group-item">Office Number: ${manager.officeNumber}</li>
+            <li class="list-group-item">Name: ${manager.getName()}</li>
+            <li class="list-group-item">Employee Id: ${manager.getId()}</li>
+            <li class="list-group-item">Address: ${manager.getAddress()}</li>
+            <li class="list-group-item">Office Number: ${manager.getOfficeNumber()}</li>
         </ul>
         <div class="card-body">
-            <a href="${manager.email}" class="card-link">Email</a>
+            <a href="#" class="card-link">${manager.getEmail()}</a>
         </div>
     </div>`
-}
+  };
 
-const internCard = intern => {
+  const internCard = (intern) => {
     return `
     <div class="card p-1" style="width: 18rem;">
         <img src="./images/avatar-1577909_960_720.png" class="card-img-top" alt="Photo of Employee">
@@ -25,36 +26,50 @@ const internCard = intern => {
             <h5 class="card-title text-center">Intern <i class="fas fa-graduation-cap"></i></h5>
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">Name: ${intern.name}</li>
-            <li class="list-group-item">Employee Id: ${intern.employeeId}</li>
-            <li class="list-group-item">school: ${intern.school}</li>
+            <li class="list-group-item">Name: ${intern.getName()}</li>
+            <li class="list-group-item">Employee Id: ${intern.getId()}</li>
+            <li class="list-group-item">school: ${intern.getSchool()}</li>
         </ul>
         <div class="card-body">
-            <a href="${intern.email}" class="card-link">Email</a>
+            <a href="#" class="card-link">${intern.getEmail()}</a>
         </div>
     </div>`
-}
+  };
 
-const engineerCard = engineer => {
-    return`
+  const engineerCard = (engineer) => {
+    return `
     <div class="card p-1" style="width: 18rem;">
         <img src="./images/avatar-1577909_960_720.png" class="card-img-top" id="avatar" alt="Photo of Employee">
         <div class="card-body">
             <h5 class="card-title text-center">Engineer <i class="fas fa-cogs"></i></h5>
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">Name: ${engineer.name}</li>
-            <li class="list-group-item">Employee Id: ${engineer.employeeId}</li>
+            <li class="list-group-item">Name: ${engineer.getName()}</li>
+            <li class="list-group-item">Employee Id: ${engineer.getId()}</li>
         </ul>
         <div class="card-body">
-            <a href="${engineer.email}" class="card-link">Email</a>
-            <a href="${engineer.github}" class="card-link">Github</a>
+            <a href="#" class="card-link">${engineer.getEmail()} </a>
+            <a href="#" class="card-link">${engineer.getGithub()}</a>
         </div>
     </div>`
-}
+  }; // added TL to text area
 
-const generateHtml = parameter => {
-    return `
+  const html = []
+
+  html.push(team.filter(employee => employee.getRole() === `Manager`)
+  .map(manager => managerCard(manager)))
+
+  html.push(team.filter(employee => employee.getRole() === `Engineer`)
+  .map(engineer => engineerCard(engineer)).join(""))
+
+  html.push(team.filter(employee => employee.getRole() === `Intern`)
+  .map(intern => internCard(intern)).join(""))
+
+  return html.join("")
+};
+
+module.exports = (team) => {
+  return `
     <!doctype html>
 <html lang="en">
   <head>
@@ -80,7 +95,7 @@ const generateHtml = parameter => {
       <div class="container-fluid">
           <div class="row">
               <div class="d-flex justify-content-center mt-3">
-                ${insert.cards.here.somehow}
+                ${generateTeam(team)}
               </div>
           </div>
       </div>
@@ -97,4 +112,4 @@ const generateHtml = parameter => {
     -->
   </body>
 </html>`
-}
+};
